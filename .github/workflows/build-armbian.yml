@@ -32,7 +32,7 @@ on:
 
 jobs:
   build-armbian:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
       - name: Clone Armbian repository
@@ -62,4 +62,4 @@ jobs:
         with:
           name: armbian-image
           path: output/image.img
-          runs-on: self-hosted
+          
