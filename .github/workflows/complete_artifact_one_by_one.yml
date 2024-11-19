@@ -325,3 +325,4 @@ jobs:
           armbian_release_body:       "Virtual images for x86 and arm64"
           armbian_pgp_key:            "${{secrets.GPG_KEY1}}"
           armbian_pgp_password:       "${{secrets.GPG_PASSPHRASE1}}"
+          runs-on: self-hosted
