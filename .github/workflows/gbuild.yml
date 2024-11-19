@@ -24,9 +24,8 @@ jobs:
           cd build
           sudo git clone https://github.com/NeoDeveloperz/userpatches_armbian userpatches
           sudo chmod 777 -R ./*
+          ./compile.sh BOARD=bananapim2ultra BRANCH=current RELEASE=noble BUILD_MINIMAL=yes BUILD_DESKTOP=no KERNEL=yes KERNEL_CONFIGURE=no
           
 
-      - name: Run Armbian build script
-        run: |
-          cd build/
-          ./compile.sh BOARD=bananapim2ultra BRANCH=current RELEASE=noble BUILD_MINIMAL=yes BUILD_DESKTOP=no KERNEL=yes KERNEL_CONFIGURE=no
+
+          
