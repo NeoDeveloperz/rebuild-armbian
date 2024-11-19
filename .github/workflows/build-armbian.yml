@@ -1,0 +1,46 @@
+name: Build Armbian
+
+on:
+  workflow_dispatch:
+    inputs:
+      BOARD:
+        description: 'Target board (e.g., orangepizero3)'
+        required: true
+      BRANCH:
+        description: 'Kernel branch (e.g., edge)'
+        required: true
+      BUILD_DESKTOP:
+        description: 'Build desktop environment (yes/no)'
+        required: false
+        default: 'yes'
+      DESKTOP_ENVIRONMENT:
+        description: 'Desktop environment (e.g., gnome, xfce)'
+        required: false
+        default: 'gnome'
+
+jobs:
+  build-armbian:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Clone Armbian repository
+        uses: armbian/build@v24.11.0-trunk.368
+      - name: Set environment variables
+        env:
+          ARMBIAN_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BOARD: ${{ github.event.inputs.BOARD }}
+          BRANCH: ${{ github.event.inputs.BRANCH }}
+          BUILD_DESKTOP: ${{ github.event.inputs.BUILD_DESKTOP }}
+          DESKTOP_ENVIRONMENT: ${{ github.event.inputs.DESKTOP_ENVIRONMENT }}
+      - name: Build Armbian image
+        run: |
+          ./compile.sh build \
+            BOARD=$BOARD \
+            BRANCH=$BRANCH \
+            BUILD_DESKTOP=$BUILD_DESKTOP \
+            DESKTOP_ENVIRONMENT=$DESKTOP_ENVIRONMENT
+      - name: Upload built image
+        uses: actions/upload-artifact@v2
+        with:
+          name: armbian-image
+          path: output/image.img
