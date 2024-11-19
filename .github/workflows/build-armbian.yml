@@ -9,7 +9,7 @@ on:
         description: 'Kernel branch (e.g., edge)'
         required: true
       RELEASE:
-       description: 'Release Name: '
+        description: 'Release Name: '
         required: false
         default: 'jammy'
       BUILD_MINIMAL:
