@@ -62,3 +62,4 @@ jobs:
         with:
           name: armbian-image
           path: output/image.img
+          runs-on: self-hosted
