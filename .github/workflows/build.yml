@@ -1,6 +1,36 @@
-- name: Rebuild Armbian
-
-
-              
-  uses: armbian/build@v25.2.0-trunk.44
-
+name: Build Armbian
+on:
+  workflow_dispatch:
+    inputs:
+      BOARD:
+        description: 'Target board (e.g., orangepizero3)'
+        required: true
+      BRANCH:
+        description: 'Kernel branch (e.g., edge)'
+        required: true
+      BUILD_MINIMAL:
+        description: 'Build minimal environment (yes/no)'
+        required: false
+        default: 'yes'
+      BUILD_DESKTOP:
+        description: 'Desktop environment y/n'
+        required: false
+        default: 'no'
+      KERNEL:
+       description: 'Kernel version (e.g., 5.10.63-1)'
+        required: false
+        default: 'yes'
+      KERNEL_CONFIGURE:
+       description: 'Kernel configuration (e.g., arm64_defconfig)'
+        required: false
+        default: 'no'
+jobs:
+  build-armbian:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: armbian/build@main
+        with:
+          armbian_token:     "${{ secrets.GITHUB_TOKEN }}"  # GitHub token
+          armbian_release:   "jammy"                        # userspace
+          armbian_target:    "build"                        # build=image, kernel=kernel
+          armbian_board:     "bananapim2ultra"                   # build target
