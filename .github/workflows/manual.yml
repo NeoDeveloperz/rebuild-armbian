@@ -20,10 +20,6 @@ on:
         description: 'Desktop environment y/n'
         required: false
         default: 'no'
-      KERNEL:
-        description: 'Kernel version (e.g., 5.10.63-1)'
-        required: false
-        default: 'yes'
       KERNEL_CONFIGURE:
         description: 'Kernel configuration (e.g., arm64_defconfig)'
         required: false
@@ -45,7 +41,6 @@ jobs:
           RELEASE: ${{ github.event.inputs.RELEASE }}
           BUILD_MINIMAL: ${{ github.event.inputs.BUILD_MINIMAL }}
           BUILD_DESKTOP: ${{ github.event.inputs.BUILD_DESKTOP }}
-          KERNEL: ${{ github.event.inputs.KERNEL }}
           KERNEL_CONFIGURE: ${{ github.event.inputs.KERNEL_CONFIGURE }}
       - name: Build Armbian image
         run: |
@@ -55,7 +50,6 @@ jobs:
             RELEASE=$RELEASE \
             BUILD_MINIMAL=$BUILD_MINIMAL \
             BUILD_DESKTOP=$BUILD_DESKTOP \
-            KERNEL=$KERNEL \
             KERNEL_CONFIGURE=$KERNEL_CONFIGURE 
       - name: Upload built image
         uses: actions/upload-artifact@v2
