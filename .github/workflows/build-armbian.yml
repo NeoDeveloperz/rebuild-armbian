@@ -21,11 +21,11 @@ on:
         required: false
         default: 'no'
       KERNEL:
-       description: 'Kernel version (e.g., 5.10.63-1)'
+        description: 'Kernel version (e.g., 5.10.63-1)'
         required: false
         default: 'yes'
       KERNEL_CONFIGURE:
-       description: 'Kernel configuration (e.g., arm64_defconfig)'
+        description: 'Kernel configuration (e.g., arm64_defconfig)'
         required: false
         default: 'no'
       
