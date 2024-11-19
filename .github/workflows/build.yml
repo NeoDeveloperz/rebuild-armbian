@@ -1,3 +1,6 @@
-name: Rebuild Armbian
- - uses: armbian/build@v25.2.0-trunk.44
+- name: Rebuild Armbian
+
+
+              
+  uses: armbian/build@v25.2.0-trunk.44
 
