@@ -1,31 +1,13 @@
-name: Build Armbian
-
+name: "Build Armbian"
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
+  workflow_dispatch:
 jobs:
-  build:
+  build-armbian:
     runs-on: self-hosted
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up build environment
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential git python3-dev python3-pip
-          sudo git clone https://github.com/armbian/build
-          cd build
-          sudo git clone https://github.com/NeoDeveloperz/userpatches_armbian userpatches
-          sudo chmod 777 -R ./*
-          ./compile.sh BOARD=bananapim2ultra BRANCH=current RELEASE=noble BUILD_MINIMAL=yes BUILD_DESKTOP=no KERNEL=yes KERNEL_CONFIGURE=no
-          
-
-
-          
+      - uses: armbian/build@main
+        with:
+          armbian_token:     "${{ secrets.GITHUB_TOKEN }}"  # GitHub token
+          armbian_release:   "noble"                        # userspace
+          armbian_target:    "build"                        # build=image, kernel=kernel
+          armbian_board:     "bananapim2ultra"                   # build target
