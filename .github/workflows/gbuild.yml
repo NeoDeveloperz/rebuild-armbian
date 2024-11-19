@@ -11,3 +11,5 @@ jobs:
           armbian_release:   "noble"                        # userspace
           armbian_target:    "build"                        # build=image, kernel=kernel
           armbian_board:     "bananapim2ultra"                   # build target
+          armbian_kernel:    "yes"
+          
