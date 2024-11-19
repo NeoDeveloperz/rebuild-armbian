@@ -27,4 +27,6 @@ jobs:
           
 
       - name: Run Armbian build script
-        run: ./compile.sh BOARD=bananapim2ultra BRANCH=current RELEASE=noble BUILD_MINIMAL=yes BUILD_DESKTOP=no KERNEL=yes KERNEL_CONFIGURE=no
+        run: |
+          cd build/
+          ./compile.sh BOARD=bananapim2ultra BRANCH=current RELEASE=noble BUILD_MINIMAL=yes BUILD_DESKTOP=no KERNEL=yes KERNEL_CONFIGURE=no
